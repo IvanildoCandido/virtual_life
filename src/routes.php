@@ -8,3 +8,4 @@ $router->get('/login', 'LoginController@signin');
 $router->post('/login', 'LoginController@signinAction');
 
 $router->get('/signup', 'LoginController@signup');
+$router->post('/signup', 'LoginController@signupAction');
