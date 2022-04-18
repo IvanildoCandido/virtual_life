@@ -15,6 +15,7 @@ class LoginHandler
                 $loggedUser = new User();
                 $loggedUser->setId($data['id']);
                 $loggedUser->setName($data['name']);
+                $loggedUser->setAvatar($data['avatar']);
 
                 return $loggedUser;
             }

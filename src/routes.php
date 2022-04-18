@@ -1,4 +1,5 @@
 <?php
+
 use core\Router;
 
 $router = new Router();
@@ -9,3 +10,5 @@ $router->post('/login', 'LoginController@signinAction');
 
 $router->get('/signup', 'LoginController@signup');
 $router->post('/signup', 'LoginController@signupAction');
+
+$router->get('/profile', 'HomeController@profile');

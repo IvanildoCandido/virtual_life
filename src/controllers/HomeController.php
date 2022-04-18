@@ -19,6 +19,10 @@ class HomeController extends Controller
 
     public function index()
     {
-        $this->render('home', ['nome' => 'Systech Tecnologia']);
+        $this->render('home', ['loggedUser' => $this->loggedUser]);
+    }
+    public function profile()
+    {
+        echo 'Perfil';
     }
 }
