@@ -30,7 +30,7 @@ class LoginHandler
                 User::update()->set('token', $token)
                     ->where('email', $email)->execute();
                 return $token;
-            }
+            }            
         }
         return false;
     }
