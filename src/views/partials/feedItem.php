@@ -51,23 +51,6 @@
                 </div>
                 <input type="text" class="fic-item-field" placeholder="Escreva um comentário" />
             </div>
-            <form class="feed-new-body" method="POST" action="<?= $base ?>/post/new">
-                <input type="hidden" name="body">
-            </form>
         </div>
     </div>
 </div>
-<script type="text/javascript">
-    let feedInput = document.querySelector('.feed-new-input');
-    let feedSubmit = document.querySelector('.feed-new-send');
-    let feedForm = document.querySelector('.feed-new-body');
-
-    feedSubmit.addEventListener('click', function(obj) {
-        let value = feedInput.innerText;
-
-        if (value != '') {
-            feedForm.querySelector('input[name="body"]').value = value;
-            feedForm.submit();
-        }
-    })
-</script>
