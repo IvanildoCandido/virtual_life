@@ -7,13 +7,13 @@
             </div>
         </div>
         <div class="box-body">
-            <a href=""><img src="https://alunos.b7web.com.br/media/courses/php-nivel-1.jpg" /></a>
-            <a href=""><img src="https://alunos.b7web.com.br/media/courses/laravel-nivel-1.jpg" /></a>
+            <a href=""><img src="https://alunos.b7web.com.br/media/courses/logo/php.jpg" /></a>
+            <a href=""><img src="https://alunos.b7web.com.br/media/courses/laravel.jpg" /></a>
         </div>
     </div>
     <div class="box">
         <div class="box-body m-10">
-            Criado com ❤️ por B7Web
+            Criado com ❤️ por Systech Tecnologia
         </div>
     </div>
 </div>
