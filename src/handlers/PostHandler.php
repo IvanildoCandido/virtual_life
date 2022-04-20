@@ -3,6 +3,8 @@
 namespace src\handlers;
 
 use \src\models\Post;
+use \src\models\User;
+use \src\models\UserRelation;
 
 class PostHandler
 {
@@ -17,5 +19,16 @@ class PostHandler
                 'body' => $body,
             ])->execute();
         }
+    }
+    public static function getHomeFeed($userId)
+    {
+        // Get list of users I follow
+        $followUsers = UserRelation::select()
+            ->where('user_from', $userId)->get();
+        $users = [];
+        foreach ($followUsers as $userFollow) {
+            $users[] = $userFollow['user_to'];
+        }
+        $users[] = $userId;
     }
 }
