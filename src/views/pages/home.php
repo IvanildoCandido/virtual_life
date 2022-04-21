@@ -17,7 +17,13 @@
             <div class="row">
                 <div class="column pr-5">
                     <?= $render('feedEditor', ['user' => $loggedUser]); ?>
-                    <?= $render('feedItem'); ?>
+
+                    <?php foreach ($feed as $feedItem) : ?>
+                        <?= $render('feedItem', [
+                                'data' => $feedItem
+                            ]); ?>
+                    <?php endforeach; ?>
+
                 </div>
                 <?= $render('rightBar'); ?>
 </body>

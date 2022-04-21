@@ -30,5 +30,29 @@ class PostHandler
             $users[] = $userFollow['user_to'];
         }
         $users[] = $userId;
+        // Get posts sorted by date
+        $postsList = Post::select()
+            ->where('id_user', 'in', $users)
+            ->orderBy('created_at', 'desc')
+            ->get();
+        // Convert result into objects
+        $posts = [];
+        foreach ($postsList as $postItem) {
+            $post = new Post();
+            $user = User::select()->where('id', $postItem['id_user'])->one();
+            $post->setId($postItem['id']);
+            $post->setType($postItem['type']);
+            $post->setCreated_at($postItem['created_at']);
+            $post->setBody($postItem['body']);
+
+            $post->user = new User();
+            $post->user->setId($user['id']);
+            $post->user->setName($user['name']);
+            $post->user->setAvatar($user['avatar']);
+
+            $posts[] = $post;
+        }
+
+        return $posts;
     }
 }
