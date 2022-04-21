@@ -20,8 +20,9 @@ class PostHandler
             ])->execute();
         }
     }
-    public static function getHomeFeed($userId)
+    public static function getHomeFeed($userId, $page)
     {
+        $perPage = 2;
         // Get list of users I follow
         $followUsers = User_Relation::select()
             ->where('user_from', $userId)->get();
@@ -34,7 +35,12 @@ class PostHandler
         $postsList = Post::select()
             ->where('id_user', 'in', $users)
             ->orderBy('created_at', 'desc')
+            ->page($page, $perPage)
             ->get();
+        //Pagination
+        $pagesCount = ceil((Post::select()
+            ->where('id_user', 'in', $users)
+            ->count() / $perPage));
         // Convert result into objects
         $posts = [];
         foreach ($postsList as $postItem) {
@@ -58,6 +64,10 @@ class PostHandler
             $posts[] = $post;
         }
 
-        return $posts;
+        return [
+            'posts' => $posts,
+            'currentPage' => $page,
+            'pagesCount' => $pagesCount
+        ];
     }
 }
