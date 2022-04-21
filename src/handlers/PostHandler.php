@@ -44,6 +44,11 @@ class PostHandler
             $post->setType($postItem['type']);
             $post->setCreated_at($postItem['created_at']);
             $post->setBody($postItem['body']);
+            $post->setMySelf(false);
+
+            if ($postItem['id_user'] === $userId) {
+                $post->setMySelf(true);
+            }
 
             $post->user = new User();
             $post->user->setId($user['id']);

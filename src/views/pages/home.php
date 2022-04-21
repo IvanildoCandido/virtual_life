@@ -20,7 +20,8 @@
 
                     <?php foreach ($feed as $feedItem) : ?>
                         <?= $render('feedItem', [
-                                'data' => $feedItem
+                                'data' => $feedItem,
+                                'loggedUser' => $loggedUser
                             ]); ?>
                     <?php endforeach; ?>
 

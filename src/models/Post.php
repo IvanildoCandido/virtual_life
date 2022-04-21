@@ -11,6 +11,10 @@ class Post extends Model
     private $type;
     private $created_at;
     private $body;
+    private $mySelf;
+    private $likesCount = 0;
+    private $comments = [];
+    private $liked = false;
 
 
     public function getId()
@@ -61,5 +65,41 @@ class Post extends Model
     public function setBody($body)
     {
         return $this->body = $body;
+    }
+    public function getMySelf()
+    {
+        return $this->mySelf;
+    }
+
+    public function setMySelf($mySelf)
+    {
+        return $this->mySelf = $mySelf;
+    }
+    public function getLikesCount()
+    {
+        return $this->likesCount;
+    }
+
+    public function setLikesCount($likesCount)
+    {
+        return $this->likesCount = $likesCount;
+    }
+    public function getComments()
+    {
+        return $this->comments;
+    }
+
+    public function setComments($comments)
+    {
+        return $this->comments = $comments;
+    }
+    public function getLiked()
+    {
+        return $this->liked;
+    }
+
+    public function setLiked($liked)
+    {
+        return $this->liked = $liked;
     }
 }
