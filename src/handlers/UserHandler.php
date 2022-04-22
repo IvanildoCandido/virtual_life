@@ -3,6 +3,7 @@
 namespace src\handlers;
 
 use \src\models\User;
+use src\models\User_Relation;
 
 class UserHandler
 {
@@ -49,7 +50,24 @@ class UserHandler
         }
         return $date;
     }
-    public static function idExists($id)
+    public static function getRelations($userId, $userTo, $userFrom)
+    {
+        $list = [];
+        $followers = User_Relation::select()
+            ->where($userTo, $userId)->get();
+        foreach ($followers as $follower) {
+            $userData = User::select()
+                ->where('id', $follower[$userFrom])->one();
+            $newUser = new User();
+            $newUser->setId($userData['id']);
+            $newUser->setName($userData['name']);
+            $newUser->setAvatar($userData['avatar']);
+
+            $list[] = $newUser;
+        }
+        return $list;
+    }
+    public static function idExists($id, $full = false)
     {
         $data = User::select()->where('id', $id)->one();
 
@@ -62,6 +80,16 @@ class UserHandler
             $user->setWork($data['work']);
             $user->setAvatar($data['avatar']);
             $user->setCover($data['cover']);
+
+            if ($full) {
+                $user->setFollowers([]);
+                $user->setFollowing([]);
+                $user->setPhotos([]);
+                // Get Followers
+                $user->setFollowers(UserHandler::getRelations($id, 'user_to', 'user_from'));
+                // Get Following
+                $user->setFollowing(UserHandler::getRelations($id, 'user_from', 'user_to'));
+            }
             return $user;
         }
         return false;

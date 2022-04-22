@@ -23,7 +23,7 @@ class ProfileController extends Controller
         if (!empty($args['id'])) {
             $id = $args['id'];
         }
-        $user = UserHandler::idExists($id);
+        $user = UserHandler::idExists($id, true);
 
         if (!$user) {
             $this->redirect('/');

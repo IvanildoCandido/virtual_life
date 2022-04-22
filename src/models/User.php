@@ -16,6 +16,9 @@ class User extends Model
     private $avatar;
     private $cover;
     private $token;
+    private $followers = [];
+    private $following = [];
+    private $photos = [];
 
     public function getId()
     {
@@ -115,5 +118,32 @@ class User extends Model
     public function setToken($token)
     {
         return $this->token = $token;
+    }
+    public function getFollowers()
+    {
+        return $this->followers;
+    }
+
+    public function setFollowers($followers)
+    {
+        return $this->followers = $followers;
+    }
+    public function getFollowing()
+    {
+        return $this->following;
+    }
+
+    public function setFollowing($following)
+    {
+        return $this->following = $following;
+    }
+    public function getPhotos()
+    {
+        return $this->photos;
+    }
+
+    public function setPhotos($photos)
+    {
+        return $this->photos = $photos;
     }
 }

@@ -12,19 +12,21 @@
                     </div>
                     <div class="profile-info-name">
                         <div class="profile-info-name-text"><?= $user->getName(); ?></div>
-                        <div class="profile-info-location"><?= $user->getCity(); ?></div>
+                        <?php if ($user->getCity() === NULL) : ?>
+                            <div class="profile-info-location"><?= $user->getCity(); ?></div>
+                        <?php endif; ?>
                     </div>
                     <div class="profile-info-data row">
                         <div class="profile-info-item m-width-20">
-                            <div class="profile-info-item-n">129</div>
+                            <div class="profile-info-item-n"><?= count($user->getFollowers()); ?></div>
                             <div class="profile-info-item-s">Seguidores</div>
                         </div>
                         <div class="profile-info-item m-width-20">
-                            <div class="profile-info-item-n">363</div>
+                            <div class="profile-info-item-n"><?= count($user->getFollowing()); ?></div>
                             <div class="profile-info-item-s">Seguindo</div>
                         </div>
                         <div class="profile-info-item m-width-20">
-                            <div class="profile-info-item-n">12</div>
+                            <div class="profile-info-item-n"><?= count($user->getPhotos()); ?></div>
                             <div class="profile-info-item-s">Fotos</div>
                         </div>
                     </div>
@@ -44,16 +46,18 @@
                         <img src="<?= $base; ?>/assets/images/calendar.png" />
                         01/01/1930 (90 anos)
                     </div>
-
-                    <div class="user-info-mini">
-                        <img src="<?= $base; ?>/assets/images/pin.png" />
-                        <?= $user->getCity(); ?>
-                    </div>
-
-                    <div class="user-info-mini">
-                        <img src="<?= $base; ?>/assets/images/work.png" />
-                        <?= $user->getWork(); ?>
-                    </div>
+                    <?php if ($user->getCity() === NULL) : ?>
+                        <div class="user-info-mini">
+                            <img src="<?= $base; ?>/assets/images/pin.png" />
+                            <?= $user->getCity(); ?>
+                        </div>
+                    <?php endif; ?>
+                    <?php if ($user->getWork() === NULL) : ?>
+                        <div class="user-info-mini">
+                            <img src="<?= $base; ?>/assets/images/work.png" />
+                            <?= $user->getWork(); ?>
+                        </div>
+                    <?php endif; ?>
 
                 </div>
             </div>
@@ -62,7 +66,7 @@
                 <div class="box-header m-10">
                     <div class="box-header-text">
                         Seguindo
-                        <span>(363)</span>
+                        <span>(<?= count($user->getFollowing()); ?>)</span>
                     </div>
                     <div class="box-header-buttons">
                         <a href="">ver todos</a>
@@ -157,7 +161,7 @@
                 <div class="box-header m-10">
                     <div class="box-header-text">
                         Fotos
-                        <span>(12)</span>
+                        <span>(<?= count($user->getPhotos()); ?>)</span>
                     </div>
                     <div class="box-header-buttons">
                         <a href="">ver todos</a>
