@@ -2,6 +2,7 @@
 
 namespace src\handlers;
 
+use \src\handlers\PostHandler;
 use \src\models\User;
 use src\models\User_Relation;
 
@@ -89,6 +90,8 @@ class UserHandler
                 $user->setFollowers(UserHandler::getRelations($id, 'user_to', 'user_from'));
                 // Get Following
                 $user->setFollowing(UserHandler::getRelations($id, 'user_from', 'user_to'));
+                // Get Photos
+                $user->setPhotos(PostHandler::getPhotosFrom($id));
             }
             return $user;
         }

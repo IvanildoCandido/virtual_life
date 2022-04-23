@@ -4,6 +4,7 @@ namespace src\controllers;
 
 use \core\Controller;
 use \src\handlers\UserHandler;
+use \src\models\User;
 
 class ProfileController extends Controller
 {
@@ -29,9 +30,12 @@ class ProfileController extends Controller
             $this->redirect('/');
         }
 
+        $age = User::getAge($user->getBirthdate());
+
         $this->render('profile', [
             'loggedUser' => $this->loggedUser,
-            'user' => $user
+            'user' => $user,
+            'age' => $age
         ]);
     }
 }

@@ -20,6 +20,15 @@ class User extends Model
     private $following = [];
     private $photos = [];
 
+    // Manipulations Functions
+
+    public static function getAge($date)
+    {
+        $dateFrom = new \DateTime($date);
+        $today = new \DateTime('today');
+        return $dateFrom->diff($today)->y;
+    }
+
     public function getId()
     {
         return $this->id;

@@ -70,4 +70,23 @@ class PostHandler
             'pagesCount' => $pagesCount
         ];
     }
+    public static function getPhotosFrom($id)
+    {
+        $data = Post::select()
+            ->where('id_user', $id)
+            ->where('type', 'photo')
+            ->get();
+            
+        $photos = [];
+
+        foreach ($data as $photo) {
+            $post = new Post();
+            $post->setId($photo['id']);
+            $post->setType($photo['type']);
+            $post->setCreated_at($photo['created_at']);
+            $post->setBody($photo['body']);
+            $photos[] = $post;
+        }
+        return $photos;
+    }
 }
