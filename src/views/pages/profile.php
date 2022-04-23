@@ -73,84 +73,20 @@
                     </div>
                 </div>
                 <div class="box-body friend-list">
-
-                    <div class="friend-icon">
-                        <a href="">
-                            <div class="friend-icon-avatar">
-                                <img src="media/avatars/avatar.jpg" />
+                    <?php for ($i = 0; $i < 9; $i++) : ?>
+                        <?php if (isset($user->getFollowing()[$i])) : ?>
+                            <div class="friend-icon">
+                                <a href="<?= $base; ?>/profile/<?= $user->getFollowing()[$i]->getId() ?>">
+                                    <div class="friend-icon-avatar">
+                                        <img src="<?= $base; ?>/media/avatars/<?= $user->getFollowing()[$i]->getAvatar() ?>" />
+                                    </div>
+                                    <div class="friend-icon-name">
+                                        <?= $user->getFollowing()[$i]->getName() ?>
+                                    </div>
+                                </a>
                             </div>
-                            <div class="friend-icon-name">
-                                Bonieky
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="friend-icon">
-                        <a href="">
-                            <div class="friend-icon-avatar">
-                                <img src="media/avatars/avatar.jpg" />
-                            </div>
-                            <div class="friend-icon-name">
-                                Bonieky
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="friend-icon">
-                        <a href="">
-                            <div class="friend-icon-avatar">
-                                <img src="media/avatars/avatar.jpg" />
-                            </div>
-                            <div class="friend-icon-name">
-                                Bonieky
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="friend-icon">
-                        <a href="">
-                            <div class="friend-icon-avatar">
-                                <img src="media/avatars/avatar.jpg" />
-                            </div>
-                            <div class="friend-icon-name">
-                                Bonieky
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="friend-icon">
-                        <a href="">
-                            <div class="friend-icon-avatar">
-                                <img src="media/avatars/avatar.jpg" />
-                            </div>
-                            <div class="friend-icon-name">
-                                Bonieky
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="friend-icon">
-                        <a href="">
-                            <div class="friend-icon-avatar">
-                                <img src="media/avatars/avatar.jpg" />
-                            </div>
-                            <div class="friend-icon-name">
-                                Bonieky
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="friend-icon">
-                        <a href="">
-                            <div class="friend-icon-avatar">
-                                <img src="media/avatars/avatar.jpg" />
-                            </div>
-                            <div class="friend-icon-name">
-                                Bonieky
-                            </div>
-                        </a>
-                    </div>
-
+                        <?php endif; ?>
+                    <?php endfor; ?>
                 </div>
             </div>
 
