@@ -24,3 +24,4 @@
 
         </div>
         <?= $render('rightBar'); ?>
+        <?= $render('footer'); ?>
