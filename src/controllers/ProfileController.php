@@ -3,6 +3,7 @@
 namespace src\controllers;
 
 use \core\Controller;
+use src\handlers\PostHandler;
 use \src\handlers\UserHandler;
 use \src\models\User;
 
@@ -20,6 +21,7 @@ class ProfileController extends Controller
 
     public function index($args = [])
     {
+        $page = intval(\filter_input(INPUT_GET, 'page'));
         $id = $this->loggedUser->getId();
         if (!empty($args['id'])) {
             $id = $args['id'];
@@ -32,10 +34,13 @@ class ProfileController extends Controller
 
         $age = User::getAge($user->getBirthdate());
 
+        $feed = PostHandler::getUserFeed($id, $page, $this->loggedUser->getId());
+
         $this->render('profile', [
             'loggedUser' => $this->loggedUser,
             'user' => $user,
-            'age' => $age
+            'age' => $age,
+            'feed' => $feed
         ]);
     }
 }
