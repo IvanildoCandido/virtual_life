@@ -2,10 +2,10 @@
     <div class="box-body">
         <div class="feed-item-head row mt-20 m-width-20">
             <div class="feed-item-head-photo">
-                <a href=""><img src="<?= $base ?>/media/avatars/<?= $data->user->getAvatar(); ?>" /></a>
+                <a href="<?= $base ?>/profile/<?= $data->user->getId(); ?>"><img src="<?= $base ?>/media/avatars/<?= $data->user->getAvatar(); ?>" /></a>
             </div>
             <div class="feed-item-head-info">
-                <a href=""><span class="fidi-name"><?= $data->user->getName(); ?></span></a>
+                <a href="<?= $base ?>/profile/<?= $data->user->getId(); ?>"><span class="fidi-name"><?= $data->user->getName(); ?></span></a>
                 <span class="fidi-action">
                     <?php
                     switch ($data->getType()) {

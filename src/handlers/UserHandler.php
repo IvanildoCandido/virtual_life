@@ -68,10 +68,13 @@ class UserHandler
         }
         return $list;
     }
-    public static function idExists($id, $full = false)
+    public static function idExists($id, $full = false, $verifyId = false)
     {
-        $data = User::select()->where('id', $id)->one();
 
+        $data = User::select()->where('id', $id)->one();
+        if ($data && $verifyId) {
+            return true;
+        }
         if ($data) {
             $user = new User();
             $user->setId($data['id']);
@@ -115,5 +118,30 @@ class UserHandler
             'token' => $token,
         ])->execute();
         return $token;
+    }
+    public static function isFollowing($from, $to)
+    {
+        $data = User_Relation::select()
+            ->where('user_from', $from)
+            ->where('user_to', $to)
+            ->one();
+        if ($data) {
+            return true;
+        }
+        return false;
+    }
+    public static function follow($from, $to)
+    {
+        User_Relation::insert([
+            'user_from' => $from,
+            'user_to' => $to
+        ])->execute();
+    }
+    public static function unfollow($from, $to)
+    {
+        User_Relation::delete([
+            'user_from' => $from,
+            'user_to' => $to
+        ])->execute();
     }
 }

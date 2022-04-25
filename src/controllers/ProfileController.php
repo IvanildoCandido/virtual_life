@@ -22,25 +22,46 @@ class ProfileController extends Controller
     public function index($args = [])
     {
         $page = intval(\filter_input(INPUT_GET, 'page'));
+
+        //Detect user
         $id = $this->loggedUser->getId();
         if (!empty($args['id'])) {
             $id = $args['id'];
         }
+        // Get user info
         $user = UserHandler::idExists($id, true);
 
         if (!$user) {
             $this->redirect('/');
         }
-
         $age = User::getAge($user->getBirthdate());
-
+        // Get user feed
         $feed = PostHandler::getUserFeed($id, $page, $this->loggedUser->getId());
+        // Verify if I following the user
+        $isFollowing = false;
+        if ($user->getId() !== $this->loggedUser->getId()) {
+            $isFollowing = UserHandler::isFollowing($this->loggedUser->getId(), $user->getId());
+        }
 
         $this->render('profile', [
             'loggedUser' => $this->loggedUser,
             'user' => $user,
             'age' => $age,
-            'feed' => $feed
+            'feed' => $feed,
+            'isFollowing' => $isFollowing
         ]);
+    }
+    public function follow($args)
+    {
+        $to =  $args['id'];
+        $exists = UserHandler::idExists($to, false, true);
+        if ($exists) {
+            if (UserHandler::isFollowing($this->loggedUser->getId(), $to)) {
+                UserHandler::unfollow($this->loggedUser->getId(), $to);
+            } else {
+                UserHandler::follow($this->loggedUser->getId(), $to);
+            }
+        }
+        $this->redirect('/profile/' . $to);
     }
 }

@@ -17,6 +17,9 @@
                         <?php endif; ?>
                     </div>
                     <div class="profile-info-data row">
+                        <?php if ($user->getId() != $loggedUser->getId()) : ?>
+                            <a class="button" href="<?= $base; ?>/profile/<?= $user->getId() ?>/follow"><?= (!$isFollowing) ? 'Seguir' : 'Deixar de Seguir' ?></a>
+                        <?php endif; ?>
                         <div class="profile-info-item m-width-20">
                             <div class="profile-info-item-n"><?= count($user->getFollowers()); ?></div>
                             <div class="profile-info-item-s">Seguidores</div>
