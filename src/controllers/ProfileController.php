@@ -89,4 +89,29 @@ class ProfileController extends Controller
             'isFollowing' => $isFollowing
         ]);
     }
+    public function photos($args = [])
+    {
+        //Detect user
+        $id = $this->loggedUser->getId();
+        if (!empty($args['id'])) {
+            $id = $args['id'];
+        }
+        // Get user info
+        $user = UserHandler::idExists($id, true);
+
+        if (!$user) {
+            $this->redirect('/');
+        }        
+        // Verify if I following the user
+        $isFollowing = false;
+        if ($user->getId() !== $this->loggedUser->getId()) {
+            $isFollowing = UserHandler::isFollowing($this->loggedUser->getId(), $user->getId());
+        }
+
+        $this->render('profile_photos', [
+            'loggedUser' => $this->loggedUser,
+            'user' => $user,
+            'isFollowing' => $isFollowing
+        ]);
+    }
 }

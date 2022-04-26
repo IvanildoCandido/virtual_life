@@ -58,7 +58,7 @@
                             <div class="full-friend-list">
                                 <?php foreach ($user->getFollowers() as $follower) : ?>
                                     <div class="friend-icon">
-                                        <a href="">
+                                        <a href="<?= $base; ?>/profile/<?= $follower->getId(); ?>">
                                             <div class="friend-icon-avatar">
                                                 <img src="<?= $base; ?>/media/avatars/<?= $follower->getAvatar(); ?>" />
                                             </div>
@@ -76,7 +76,7 @@
                             <div class="full-friend-list">
                                 <?php foreach ($user->getFollowing() as $following) : ?>
                                     <div class="friend-icon">
-                                        <a href="">
+                                        <a href="<?= $base; ?>/profile/<?= $follower->getId(); ?>">
                                             <div class="friend-icon-avatar">
                                                 <img src="<?= $base; ?>/media/avatars/<?= $following->getAvatar(); ?>" />
                                             </div>
