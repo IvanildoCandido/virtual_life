@@ -144,4 +144,21 @@ class UserHandler
             'user_to' => $to
         ])->execute();
     }
+    public static function searchUsers($search)
+    {
+        $users = [];
+
+        $data = User::select()
+            ->where('name', 'like', "%$search%")->get();
+        if ($data) {
+            foreach ($data as $item) {
+                $user = new User();
+                $user->setId($item['id']);
+                $user->setName($item['name']);
+                $user->setAvatar($item['avatar']);
+                $users[] = $user;
+            }
+        }
+        return $users;
+    }
 }
