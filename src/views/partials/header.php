@@ -5,6 +5,8 @@
     <meta charset="utf-8" />
     <title></title>
     <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" href="<?= $base ?>/assets/css/systech.css" />
     <link rel="stylesheet" href="<?= $base ?>/assets/css/style.css" />
 </head>
 
@@ -18,7 +20,13 @@
                 <div class="head-side-left">
                     <div class="search-area">
                         <form method="GET" action="<?= $base; ?>/search">
-                            <input type="search" placeholder="Pesquisar" name="s" />
+                            <div class="search">
+                                <i class="fa fa-search"></i>
+                                <input type="text" placeholder="Pesquisar" name="s" class="input">
+                            </div>
+                            <div class="close">
+                                <i class="fa fa-close"></i>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -36,3 +44,22 @@
             </div>
         </div>
     </header>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script>
+        (function($) {
+            var search_button = $('.fa-search'),
+                close_button = $('.close'),
+                input = $('.input');
+            search_button.on('click', function() {
+                $(this).parent().addClass('open');
+                close_button.fadeIn(500);
+                input.fadeIn(500);
+            });
+
+            close_button.on('click', function() {
+                search_button.parent().removeClass('open');
+                close_button.fadeOut(500);
+                input.fadeOut(500);
+            });
+        })(jQuery);
+    </script>
