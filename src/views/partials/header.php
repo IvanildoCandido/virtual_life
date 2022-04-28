@@ -54,7 +54,9 @@
                 $(this).parent().addClass('open');
                 close_button.fadeIn(500);
                 input.fadeIn(500);
-                input.focus();
+                setTimeout(function() {
+                    input.focus();
+                }, 500);
             });
 
             close_button.on('click', function() {
