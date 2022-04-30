@@ -17,6 +17,8 @@ class UserHandler
                 $loggedUser = new User();
                 $loggedUser->setId($data['id']);
                 $loggedUser->setName($data['name']);
+                $loggedUser->setEmail($data['email']);
+                $loggedUser->setBirthdate($data['birthdate']);
                 $loggedUser->setAvatar($data['avatar']);
 
                 return $loggedUser;

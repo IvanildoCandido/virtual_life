@@ -3,15 +3,15 @@
 
 
 <div class="container-config">
-    <form>
+    <form method="post" action="<?= $base; ?>/config">
         <div class="row">
             <h4>Dados da Conta</h4>
             <div class="input-group input-group-icon">
-                <input type="text" placeholder="Nome completo" />
+                <input type="text" placeholder="Nome completo" name="name" value="<?= $loggedUser->getName() ?>" />
                 <div class="input-icon"><i class="fa fa-user"></i></div>
             </div>
             <div class="input-group input-group-icon">
-                <input type="email" placeholder="Endereço de email" />
+                <input type="email" placeholder="Endereço de email" name="email" value="<?= $loggedUser->getEmail() ?>" />
                 <div class="input-icon"><i class="fa fa-envelope"></i></div>
             </div>
             <div class="input-group input-group-icon">
@@ -26,29 +26,30 @@
         <div class="row">
             <div class="col-half">
                 <h4>Data de Nascimento</h4>
+                <?php $birthdate = explode('-', $loggedUser->getBirthdate()) ?>
                 <div class="input-group">
                     <div class="col-third">
-                        <input type="text" placeholder="DD" />
+                        <input type="text" placeholder="DD" name="day" value="<?= $birthdate[2] ?>" />
                     </div>
                     <div class="col-third">
-                        <input type="text" placeholder="MM" />
+                        <input type="text" placeholder="MM" name="month" value="<?= $birthdate[1] ?>" />
                     </div>
                     <div class="col-third">
-                        <input type="text" placeholder="YYYY" />
+                        <input type="text" placeholder="YYYY" name="year" value="<?= $birthdate[0] ?>" />
                     </div>
                 </div>
             </div>
             <div class="col-half">
                 <h4>Cidade</h4>
                 <div class="input-group input-group-icon">
-                    <input type="text" placeholder="Cidade" />
+                    <input type="text" placeholder="Cidade" name="city" value="<?= $loggedUser->getCity() ?>" />
                     <div class="input-icon"><i class="fa fa-user"></i></div>
                 </div>
             </div>
             <div class="row">
                 <h4>Local de Trabalho</h4>
                 <div class="input-group input-group-icon">
-                    <input type="text" placeholder="Trabalho" />
+                    <input type="text" placeholder="Trabalho" name="work" value="<?= $loggedUser->getWork() ?>" />
                     <div class="input-icon"><i class="fa fa-user"></i></div>
                 </div>
             </div>

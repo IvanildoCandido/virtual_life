@@ -21,72 +21,20 @@ class ConfigController extends Controller
 
     public function index($args = [])
     {
-
         $this->render('config', [
             'loggedUser' => $this->loggedUser,
         ]);
     }
-    public function follow($args)
+    public function configAction()
     {
-        $to =  $args['id'];
-        $exists = UserHandler::idExists($to, false, true);
-        if ($exists) {
-            if (UserHandler::isFollowing($this->loggedUser->getId(), $to)) {
-                UserHandler::unfollow($this->loggedUser->getId(), $to);
-            } else {
-                UserHandler::follow($this->loggedUser->getId(), $to);
-            }
-        }
-        $this->redirect('/profile/' . $to);
-    }
-    public function friends($args = [])
-    {
-        //Detect user
-        $id = $this->loggedUser->getId();
-        if (!empty($args['id'])) {
-            $id = $args['id'];
-        }
-        // Get user info
-        $user = UserHandler::idExists($id, true);
+        $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
+        $password = filter_input(INPUT_POST, 'password');
+        $day = filter_input(INPUT_POST, 'day');
+        $month = filter_input(INPUT_POST, 'month');
+        $year = filter_input(INPUT_POST, 'year');
+        $city = filter_input(INPUT_POST, 'city');
+        $work = filter_input(INPUT_POST, 'work');
 
-        if (!$user) {
-            $this->redirect('/');
-        }
-        // Verify if I following the user
-        $isFollowing = false;
-        if ($user->getId() !== $this->loggedUser->getId()) {
-            $isFollowing = UserHandler::isFollowing($this->loggedUser->getId(), $user->getId());
-        }
-
-        $this->render('profile_friends', [
-            'loggedUser' => $this->loggedUser,
-            'user' => $user,
-            'isFollowing' => $isFollowing
-        ]);
-    }
-    public function photos($args = [])
-    {
-        //Detect user
-        $id = $this->loggedUser->getId();
-        if (!empty($args['id'])) {
-            $id = $args['id'];
-        }
-        // Get user info
-        $user = UserHandler::idExists($id, true);
-
-        if (!$user) {
-            $this->redirect('/');
-        }
-        // Verify if I following the user
-        $isFollowing = false;
-        if ($user->getId() !== $this->loggedUser->getId()) {
-            $isFollowing = UserHandler::isFollowing($this->loggedUser->getId(), $user->getId());
-        }
-
-        $this->render('profile_photos', [
-            'loggedUser' => $this->loggedUser,
-            'user' => $user,
-            'isFollowing' => $isFollowing
-        ]);
+        echo $email;
     }
 }
