@@ -5,6 +5,11 @@
 <div class="container-config">
     <form method="post" action="<?= $base; ?>/config">
         <div class="row">
+            <?php
+            if (!empty($flash)) {
+                echo "<div class='flash'>$flash</div>";
+            }
+            ?>
             <h4>Dados da Conta</h4>
             <div class="input-group input-group-icon">
                 <input type="text" placeholder="Nome completo" name="name" value="<?= $loggedUser->getName() ?>" />
@@ -15,11 +20,11 @@
                 <div class="input-icon"><i class="fa fa-envelope"></i></div>
             </div>
             <div class="input-group input-group-icon">
-                <input type="password" placeholder="Nova Senha" />
+                <input type="password" placeholder="Nova Senha" name="password" />
                 <div class="input-icon"><i class="fa fa-key"></i></div>
             </div>
             <div class="input-group input-group-icon">
-                <input type="password" placeholder="Confirmar senha" />
+                <input type="password" placeholder="Confirmar senha" name="confirmPassword" />
                 <div class="input-icon"><i class="fa fa-key"></i></div>
             </div>
         </div>

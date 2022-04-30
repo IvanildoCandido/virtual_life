@@ -439,6 +439,15 @@ header .head-side {
   padding: 5px;
   width: 80%;
 }
+.flash {
+  border: 2px solid red;
+  background-color: red;
+  color: white;
+  padding: 10px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
 @media (max-width: 992px) {
   header .head-side-right {
     display: none !important;
