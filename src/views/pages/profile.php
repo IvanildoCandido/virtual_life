@@ -15,13 +15,13 @@
                         <img src="<?= $base; ?>/assets/images/calendar.png" />
                         <?= date('d/m/Y', strtotime($user->getBirthdate())) ?> (<?= $age ?> anos)
                     </div>
-                    <?php if ($user->getCity() === NULL) : ?>
+                    <?php if ($user->getCity() !== NULL) : ?>
                         <div class="user-info-mini">
                             <img src="<?= $base; ?>/assets/images/pin.png" />
                             <?= $user->getCity(); ?>
                         </div>
                     <?php endif; ?>
-                    <?php if ($user->getWork() === NULL) : ?>
+                    <?php if ($user->getWork() !== NULL) : ?>
                         <div class="user-info-mini">
                             <img src="<?= $base; ?>/assets/images/work.png" />
                             <?= $user->getWork(); ?>

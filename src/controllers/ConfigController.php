@@ -32,6 +32,7 @@ class ConfigController extends Controller
     }
     public function configAction()
     {
+        $name = filter_input(INPUT_POST, 'name');
         $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
         $password = filter_input(INPUT_POST, 'password');
         $confirmPassword = filter_input(INPUT_POST, 'confirmPassword');
@@ -44,14 +45,19 @@ class ConfigController extends Controller
         $birthdate = "$year-$month-$day";
 
         if ($birthdate !== $this->loggedUser->getBirthdate()) {
-            $newBirthdate = UserHandler::checkDate($birthdate, null);
+            $newBirthdate = UserHandler::checkDate("$year/$month/$day", null);
+            if ($newBirthdate === false) {
+                $_SESSION['flash'] =  "Favor digitar uma data válida!";
+                $this->redirect('/config');
+            }
         }
 
-        if ($password && $confirmPassword) {
+        if ($password) {
             if ($password !== $confirmPassword) {
                 $_SESSION['flash'] =  "As senhas digitadas são diferentes!";
                 $this->redirect('/config');
             }
+            UserHandler::alterPassword($this->loggedUser->getId(), $password);
         }
 
         if ($email !== $this->loggedUser->getEmail()) {
@@ -60,5 +66,14 @@ class ConfigController extends Controller
                 $this->redirect('/config');
             }
         }
+        User::update()
+            ->set('name', $name)
+            ->set('email', $email)
+            ->set('city', $city)
+            ->set('work', $work)
+            ->set('birthdate', $birthdate)
+            ->where('id', $this->loggedUser->getId())
+            ->execute();
+        $this->redirect('/config');
     }
 }

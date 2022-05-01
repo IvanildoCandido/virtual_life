@@ -19,6 +19,8 @@ class UserHandler
                 $loggedUser->setName($data['name']);
                 $loggedUser->setEmail($data['email']);
                 $loggedUser->setBirthdate($data['birthdate']);
+                $loggedUser->setCity($data['city']);
+                $loggedUser->setWork($data['work']);
                 $loggedUser->setAvatar($data['avatar']);
 
                 return $loggedUser;
@@ -106,6 +108,17 @@ class UserHandler
     {
         $user = User::select()->where('email', $email)->one();
         return $user ? true : false;
+    }
+    public static function alterPassword($id, $password)
+    {
+        $hash = password_hash($password, PASSWORD_DEFAULT);
+        $token = md5(time() . rand(0, 9999) . time());
+        User::update()
+            ->set('password', $hash)
+            ->set('token', $token)
+            ->where('id', $id)
+            ->execute();
+        $_SESSION['token'] = $token;
     }
 
     public static function addUser($name, $email, $password, $birthdate)

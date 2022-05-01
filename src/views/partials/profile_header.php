@@ -10,7 +10,7 @@
                 </div>
                 <div class="profile-info-name">
                     <div class="profile-info-name-text"><a href="<?= $base; ?>/profile/<?= $user->getId() ?>"><?= $user->getName(); ?></a></div>
-                    <?php if ($user->getCity() === NULL) : ?>
+                    <?php if ($user->getCity() !== NULL) : ?>
                         <div class="profile-info-location"><?= $user->getCity(); ?></div>
                     <?php endif; ?>
                 </div>
