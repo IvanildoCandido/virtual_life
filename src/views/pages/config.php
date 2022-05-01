@@ -48,14 +48,14 @@
                 <h4>Cidade</h4>
                 <div class="input-group input-group-icon">
                     <input type="text" placeholder="Cidade" name="city" value="<?= $loggedUser->getCity() ?>" />
-                    <div class="input-icon"><i class="fa fa-user"></i></div>
+                    <div class="input-icon"><i class="fa fa-city"></i></div>
                 </div>
             </div>
             <div class="row">
                 <h4>Local de Trabalho</h4>
                 <div class="input-group input-group-icon">
                     <input type="text" placeholder="Trabalho" name="work" value="<?= $loggedUser->getWork() ?>" />
-                    <div class="input-icon"><i class="fa fa-user"></i></div>
+                    <div class="input-icon"><i class="fa fa-briefcase"></i></div>
                 </div>
             </div>
             <button class="button" type="submit">Salvar Alterações</button>
