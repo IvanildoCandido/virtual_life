@@ -22,6 +22,7 @@ class UserHandler
                 $loggedUser->setCity($data['city']);
                 $loggedUser->setWork($data['work']);
                 $loggedUser->setAvatar($data['avatar']);
+                $loggedUser->setCover($data['cover']);
 
                 return $loggedUser;
             }

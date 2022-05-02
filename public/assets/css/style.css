@@ -447,7 +447,10 @@ header .head-side {
   margin-bottom: 20px;
   font-weight: bold;
 }
-
+.config-images {
+  max-width: 200px;
+  margin: 10px auto;
+}
 @media (max-width: 992px) {
   header .head-side-right {
     display: none !important;
