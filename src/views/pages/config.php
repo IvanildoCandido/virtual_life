@@ -5,18 +5,6 @@
 <div class="container-config">
     <form method="POST" enctype="multipart/form-data" action="<?= $base; ?>/config">
         <div class="row">
-            <div class="col-half">
-                <h4>Imagem de Perfil</h4>
-                <input type="file" name="avatar" />
-                <img class="config-images" src="<?= $base; ?>/media/avatars/<?= $loggedUser->getAvatar() ?>" alt="Imagem do perfil">
-            </div>
-            <div class="col-half">
-                <h4>Imagem de Capa</h4>
-                <input type="file" name="cover" />
-                <img class="config-images" src="<?= $base; ?>/media/covers/<?= $loggedUser->getCover() ?>" alt="Imagem de capa">
-            </div>
-        </div>
-        <div class="row">
             <?php
             if (!empty($flash)) {
                 echo "<div class='flash'>$flash</div>";
@@ -68,6 +56,18 @@
                 <div class="input-group input-group-icon">
                     <input type="text" placeholder="Trabalho" name="work" value="<?= $loggedUser->getWork() ?>" />
                     <div class="input-icon"><i class="fa fa-briefcase"></i></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-half">
+                    <h4>Imagem de Perfil</h4>
+                    <input type="file" name="avatar" />
+                    <img class="config-images" src="<?= $base; ?>/media/avatars/<?= $loggedUser->getAvatar() ?>" alt="Imagem do perfil">
+                </div>
+                <div class="col-half">
+                    <h4>Imagem de Capa</h4>
+                    <input type="file" name="cover" />
+                    <img class="config-images" src="<?= $base; ?>/media/covers/<?= $loggedUser->getCover() ?>" alt="Imagem de capa">
                 </div>
             </div>
             <button class="button" type="submit">Salvar Alterações</button>

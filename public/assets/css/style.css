@@ -448,7 +448,7 @@ header .head-side {
   font-weight: bold;
 }
 .config-images {
-  max-width: 200px;
+  max-width: 100%;
   margin: 10px auto;
 }
 @media (max-width: 992px) {
