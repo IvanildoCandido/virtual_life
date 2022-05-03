@@ -4,7 +4,7 @@ namespace src\models;
 
 use \core\Model;
 
-class PostLike extends Model
+class Post_Like extends Model
 {
     private $id;
     private $id_post;
